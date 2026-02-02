@@ -16,6 +16,8 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+      - name: Generate Minecraft Sources
+        run: ./gradlew genSources
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload JAR
