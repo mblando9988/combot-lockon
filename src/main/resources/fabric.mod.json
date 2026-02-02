@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "combat-lockon",
+  "version": "${version}",
+  "name": "Combat Lock-On",
+  "description": "Automatically locks the camera onto entities when you deal damage to them",
+  "authors": [
+    "LockOn Developer"
+  ],
+  "contact": {
+    "homepage": "https://github.com/yourusername/combat-lockon",
+    "sources": "https://github.com/yourusername/combat-lockon"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.lockon.CombatLockOn"
+    ],
+    "client": [
+      "com.lockon.CombatLockOnClient"
+    ]
+  },
+  "mixins": [
+    "combat-lockon.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": "1.21.1"
+  }
+}

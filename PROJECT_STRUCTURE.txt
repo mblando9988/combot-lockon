@@ -1,0 +1,95 @@
+COMBAT LOCK-ON MOD - PROJECT STRUCTURE
+======================================
+
+combat-lockon/
+│
+├── DOCUMENTATION
+│   ├── README.md                        ← Full documentation (installation, usage, troubleshooting)
+│   ├── QUICK_START.md                  ← 30-second setup guide
+│   ├── IMPLEMENTATION_SUMMARY.md        ← Technical details of implementation
+│   ├── LICENSE                          ← MIT License
+│   └── PROJECT_STRUCTURE.txt            ← This file
+│
+├── BUILD CONFIGURATION
+│   ├── build.gradle                     ← Gradle build script (Minecraft 1.21.1, Fabric)
+│   ├── gradle.properties                ← Gradle settings (versions, dependencies)
+│   ├── settings.gradle                  ← Plugin repositories
+│   ├── gradlew                          ← Gradle wrapper (Unix/Mac) - USE THIS
+│   ├── gradle/
+│   │   └── wrapper/
+│   │       ├── gradle-wrapper.jar       ← Gradle wrapper JAR
+│   │       └── gradle-wrapper.properties← Gradle wrapper config
+│   └── .gitignore                       ← Git ignore patterns
+│
+├── SOURCE CODE
+│   └── src/main/
+│       ├── java/com/lockon/
+│       │   ├── CombatLockOn.java        ← Main mod class (initializer)
+│       │   ├── CombatLockOnClient.java  ← Client initialization & tick events
+│       │   ├── LockOnManager.java       ← Core lock-on logic & camera rotation
+│       │   └── mixin/
+│       │       └── PlayerEntityMixin.java ← Attack event interception
+│       │
+│       └── resources/
+│           ├── fabric.mod.json          ← Mod metadata (name, version, dependencies)
+│           └── combat-lockon.mixins.json ← Mixin configuration
+│
+└── BUILD OUTPUT (after ./gradlew build)
+    └── build/
+        └── libs/
+            └── combat-lockon-1.0.0.jar  ← Your mod JAR (install to .minecraft/mods/)
+
+KEY FILES TO EDIT:
+==================
+- LockOnManager.java: Change MAX_RANGE and ROTATION_SPEED
+- fabric.mod.json: Update version/name
+- build.gradle: Change Minecraft version
+
+BUILD COMMAND:
+==============
+./gradlew build
+
+OUTPUT:
+=======
+build/libs/combat-lockon-1.0.0.jar
+
+INSTALL TO:
+===========
+~/.minecraft/mods/combat-lockon-1.0.0.jar
+
+DEPENDENCIES REQUIRED:
+======================
+- Fabric Loader 0.15.11+
+- Fabric API 0.104.0+1.21.1
+- Minecraft 1.21.1
+
+IMPLEMENTATION STATS:
+====================
+- Java Classes: 4
+- Configuration Files: 2  
+- Build Files: 3
+- Documentation: 3
+- Total Lines of Code: ~300
+- Complexity: Low-Medium
+- Ready to Build: Yes ✓
+
+WHAT IT DOES:
+=============
+1. Detects when you hit an entity with a weapon (Mixin interception)
+2. Locks your camera to that entity (smooth rotation)
+3. Follows the entity around as it moves
+4. Unlocks when entity dies or moves >30 blocks away
+
+TESTING CHECKLIST:
+==================
+[ ] Java 21+ installed (java -version)
+[ ] ./gradlew build completes without errors
+[ ] build/libs/combat-lockon-1.0.0.jar exists
+[ ] JAR copied to .minecraft/mods/
+[ ] Minecraft launches with mod loaded
+[ ] Hit a mob - camera locks
+[ ] Move around - camera tracks
+[ ] Walk away - lock releases at >30 blocks
+[ ] Mob dies - lock releases
+
+STATUS: ✓ READY TO BUILD
